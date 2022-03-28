@@ -1,1 +1,3 @@
-# bilibiliVideoRenamer
+可以将bilibili安卓版的缓存视频的文件夹名改为视频标题
+不知道为什么有些缓存视频的entry.json会多一个花括号导致无法读取
+现学现卖的产物，随便发发
