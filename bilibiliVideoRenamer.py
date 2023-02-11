@@ -38,7 +38,8 @@ def correctJson():
         os.rename("entry_backup.json", "entry_backup2.json")
         os.rename("entry.json", "entry_backup.json")
 
-    with open(r'entry_backup.json', 'r', encoding='utf-8', errors='ignore') as f:
+    with open(r'entry_backup.json', 'r', encoding='utf-8',
+              errors='ignore') as f:
         f_str = f.read()
         docs = list(f_str)
         lenth = len(docs)
@@ -71,7 +72,16 @@ def illegalCharacterRemove(string):
 
 # 判断特殊字符
 def isIllegalCharacter(n):
-    if (n == "\\" or n == "/" or n == ":" or n == "*" or n == "?" or n == "\"" or n == "<" or n == ">" or n == "|"):
+    if (n == "\\" or n == "/" or n == ":" or n == "*" or n == "?" or n == "\""
+            or n == "<" or n == ">" or n == "|"):
+        return False
+    else:
+        return True
+
+
+def selector(name):
+    print(name)
+    if (input("请问是否要更名(y/n): ") == "y"):
         return False
     else:
         return True
@@ -85,17 +95,29 @@ for i in range(0, dirQuantityValue):
 
     try:
         name = getTitle()
+        if (selector(name)):
+            print("Pass")
+            print(" ")
+            continue
         mkcontainfolder(name)
         moveToFolder(name, videoFolderAbsPath)
     except json.JSONDecodeError:
         try:
             correctJson()
             name = getTitle()
+            if (selector(name)):
+                print("Pass")
+                print(" ")
+                continue
             mkcontainfolder(name)
             moveToFolder(name, videoFolderAbsPath)
         except json.JSONDecodeError:
             correctJson()
             name = getTitle()
+            if (selector(name)):
+                print("Pass")
+                print(" ")
+                continue
             mkcontainfolder(name)
             moveToFolder(name, videoFolderAbsPath)
 
